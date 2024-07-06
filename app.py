@@ -20,27 +20,27 @@ def login():
 def operations():
     operation = request.json.get("operation")
     if operation == None:
-        get_expenses()
+        return get_expenses()
     elif operation == "expenses_daily":
-        get_expenses("daily")
+        return get_expenses("daily")
     elif operation == "expenses_monthly":
-        get_expenses("monthly")
+        return get_expenses("monthly")
     elif operation == "income_daily":
-        get_income("daily")
+        return get_income("daily")
     elif operation == "income_monthly":
-        get_income("monthly")
+        return get_income("monthly")
     elif operation == "insert_value_income":
         id = request.json.get("id")
         date = request.json.get("date")
         note = request.json.get("note")
         amount = request.json.get("amount")
-        insert_values(id,date,note,amount,"income")
+        return insert_values(id,date,note,amount,"income")
     elif operation == "insert_value_expenses":
         id = request.json.get("id")
         date = request.json.get("date")
         note = request.json.get("note")
         amount = request.json.get("amount")
-        insert_values(id,date,note,amount,"expenses")
+        return insert_values(id,date,note,amount,"expenses")
     else:
         return 400
 if __name__ == "__main__":
