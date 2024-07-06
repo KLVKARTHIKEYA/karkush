@@ -43,8 +43,10 @@ def insert_values(id,date,note,amount,type="expenses"):
         cursr.execute("insert into expenses values(?,?,?,?)",(id,date,note,amount,))
     elif type == "income":
         connect = sqlite3.connect("prod.db")
-        cursr = connect.cursor()
+        cursr = connect.cursor() 
         cursr.execute("insert into income values(?,?,?,?)",(id,date,note,amount,))
+    else:
+        return False
 def get_income(time=None):
     if time == None:
         mega_str="{"
