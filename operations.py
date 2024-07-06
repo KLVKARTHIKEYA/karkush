@@ -38,14 +38,20 @@ def get_expenses(time=None):
         return mega_str[:len(mega_str)-1]+"}"
 def insert_values(id,date,note,amount,type="expenses"):
     if type == "expenses":
-        connect = sqlite3.connect("prod.db")
-        cursr=connect.cursor()
-        cursr.execute("insert into expenses values(?,?,?,?)",(id,date,note,amount,))
+        try:
+            connect = sqlite3.connect("prod.db")
+            cursr=connect.cursor()
+            cursr.execute("insert into expenses values(?,?,?,?)",(id,date,note,amount,))
+            cursr.fetchall()
+            connect.commit()
+        except Exception as e:
+            return e
         return "{status:success}"
     elif type == "income":
         connect = sqlite3.connect("prod.db")
         cursr = connect.cursor() 
         cursr.execute("insert into income values(?,?,?,?)",(id,date,note,amount,))
+        connect.commit()
     else:
         return False
 def get_income(time=None):
@@ -87,4 +93,4 @@ def get_income(time=None):
             return "{}"
         return mega_str[:len(mega_str)-1]+"}"
 if __name__ == "__main__":
-    print(get_income("month"))
+    print(insert_values(5,'20240706','test5',5,'expenses'))
