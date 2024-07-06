@@ -41,6 +41,7 @@ def insert_values(id,date,note,amount,type="expenses"):
         connect = sqlite3.connect("prod.db")
         cursr=connect.cursor()
         cursr.execute("insert into expenses values(?,?,?,?)",(id,date,note,amount,))
+        return "{status:success}"
     elif type == "income":
         connect = sqlite3.connect("prod.db")
         cursr = connect.cursor() 

@@ -40,7 +40,7 @@ def operations():
         date = request.json.get("date")
         note = request.json.get("note")
         amount = request.json.get("amount")
-        return insert_values(id,date,note,amount,"expenses")
+        return jsonify(insert_values(id,date,note,amount,"expenses"))
     else:
         return 400
 if __name__ == "__main__":
